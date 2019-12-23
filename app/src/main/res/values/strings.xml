@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MyEnglishWords</string>
+
+    <string name="word_edit">List of added English Words</string>
+
+    <string name="instruction_word_list">Tap the button to modify or long press to delete.</string>
 </resources>
