@@ -2,8 +2,11 @@
     <string name="app_name">MyEnglishWords</string>
 
     <string name="word_edit">List of added English Words</string>
-
     <string name="instruction_word_list">Tap the button to modify or long press to delete.</string>
-    
     <string name="instruction_edit">Enter your question and answer and press the register button</string>
+
+    <string name="status_add">add new words</string>
+    <string name="status_change">edit words</string>
+    
+    <string name="intent_key_status">intent_key_status</string>
 </resources>
