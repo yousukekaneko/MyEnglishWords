@@ -11,7 +11,7 @@ class WordListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_word_list)
 
-        buttonAddNewWords.setOnClickListener {
+        buttonRegister.setOnClickListener {
             val intent = Intent(this@WordListActivity, EditActivity::class.java)
             intent.putExtra(getString(R.string.intent_key_status), getString(R.string.status_add))
             startActivity(intent)

@@ -10,7 +10,20 @@ class EditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
-        buttonAddNewWords.setOnClickListener {  }
+        buttonRegister.setOnClickListener {
+
+            addNewWord()
+
+            changeWord()
+        }
         buttonBack2.setOnClickListener {  }
+    }
+
+    private fun changeWord() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    private fun addNewWord() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
