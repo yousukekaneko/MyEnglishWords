@@ -10,13 +10,26 @@ class EditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
+        val bundle = intent.extras
+        val strStatus = bundle.getString(getString(R.string.intent_key_status))
+        textViewStatus.text = strStatus
+
+        if (strStatus == getString(R.string.status_change)) {
+
+        }
+
         buttonRegister.setOnClickListener {
 
-            addNewWord()
-
-            changeWord()
+            if (strStatus == getString(R.string.status_add)) {
+                addNewWord()
+            } else {
+                changeWord()
+            }
         }
-        buttonBack2.setOnClickListener {  }
+
+        buttonBack2.setOnClickListener {
+            finish()
+        }
     }
 
     private fun changeWord() {
