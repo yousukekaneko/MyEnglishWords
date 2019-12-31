@@ -50,6 +50,10 @@ class EditActivity : AppCompatActivity() {
     }
 
     private fun addNewWord() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        realm.beginTransaction()
+            val englishWordDB = realm.createObject(EnglishWordDB::class.java)
+            englishWordDB.strQuestion = editText.text.toString()
+            englishWordDB.strAnswer = editText2.text.toString()
+        realm.commitTransaction()
     }
 }
