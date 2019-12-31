@@ -2,9 +2,12 @@ package com.example.android.sample.myenglishwords
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_edit.*
 
 class EditActivity : AppCompatActivity() {
+
+    lateinit var realm: Realm
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +33,16 @@ class EditActivity : AppCompatActivity() {
         buttonBack2.setOnClickListener {
             finish()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        realm = Realm.getDefaultInstance()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        realm.close()
     }
 
     private fun changeWord() {
