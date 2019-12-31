@@ -1,6 +1,7 @@
 package com.example.android.sample.myenglishwords
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_edit.*
@@ -52,8 +53,13 @@ class EditActivity : AppCompatActivity() {
     private fun addNewWord() {
         realm.beginTransaction()
             val englishWordDB = realm.createObject(EnglishWordDB::class.java)
-            englishWordDB.strQuestion = editText.text.toString()
-            englishWordDB.strAnswer = editText2.text.toString()
+            englishWordDB.strQuestion = editTextQuestion.text.toString()
+            englishWordDB.strAnswer = editTextAnswer.text.toString()
         realm.commitTransaction()
+
+        editTextQuestion.setText("")
+        editTextAnswer.setText("")
+
+        Toast.makeText(this@EditActivity, "登録完了", Toast.LENGTH_SHORT).show()
     }
 }
