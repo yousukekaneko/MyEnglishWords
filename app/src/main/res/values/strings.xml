@@ -9,4 +9,7 @@
     <string name="status_change">edit words</string>
     
     <string name="intent_key_status">intent_key_status</string>
+
+    <string name="db_field_question">strQuestion</string>
+    <string name="db_field_answer">strAnswer</string>
 </resources>
