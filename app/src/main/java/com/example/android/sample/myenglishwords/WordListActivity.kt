@@ -34,9 +34,14 @@ class WordListActivity : AppCompatActivity() {
         val results: RealmResults<EnglishWordDB> = realm.where(EnglishWordDB::class.java)
             .findAll().sort(getString(R.string.db_field_question))
 
-        val array = ArrayAdapter<EnglishWordDB>(this, android.R.layout.simple_list_item_1, results)
+        val wordList = ArrayList<String>()
+        results.forEach {
+            wordList.add(it.strQuestion + " : " + it.strAnswer)
+        }
 
-        listView.adapter = array
+        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, wordList)
+
+        listView.adapter = adapter
     }
 
     override fun onPause() {
