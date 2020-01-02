@@ -2,13 +2,16 @@ package com.example.android.sample.myenglishwords
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import io.realm.Realm
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_word_list.*
 
-class WordListActivity : AppCompatActivity() {
+class WordListActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
+    View.OnLongClickListener, AdapterView.OnItemLongClickListener {
 
     lateinit var realm: Realm
 
@@ -24,6 +27,10 @@ class WordListActivity : AppCompatActivity() {
         buttonBack2.setOnClickListener {
             finish()
         }
+
+        listView.setOnItemClickListener(this)
+
+        listView.setOnItemLongClickListener(this)
     }
 
     override fun onResume() {
@@ -49,4 +56,13 @@ class WordListActivity : AppCompatActivity() {
 
         realm.close()
     }
+
+    override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onItemLongClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 }
