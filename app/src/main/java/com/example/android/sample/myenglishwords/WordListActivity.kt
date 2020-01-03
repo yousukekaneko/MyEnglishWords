@@ -30,9 +30,9 @@ class WordListActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
             finish()
         }
 
-        listView.setOnItemClickListener(this)
+        listView.onItemClickListener = this
 
-        listView.setOnItemLongClickListener(this)
+        listView.onItemLongClickListener = this
     }
 
     override fun onResume() {

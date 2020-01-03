@@ -12,7 +12,7 @@ class EditActivity : AppCompatActivity() {
 
     var strQuestion : String = ""
     var strAnswer : String = ""
-    var intPostion : Int = 0
+    var intPosition : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,7 @@ class EditActivity : AppCompatActivity() {
             editTextQuestion.setText(strQuestion)
             editTextAnswer.setText(strAnswer)
 
-            intPostion = bundle.getInt(getString(R.string.intent_key_position))
+            intPosition = bundle.getInt(getString(R.string.intent_key_position))
         }
 
         buttonRegister.setOnClickListener {
@@ -56,7 +56,21 @@ class EditActivity : AppCompatActivity() {
     }
 
     private fun changeWord() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val results = realm.where(EnglishWordDB::class.java)
+            .findAll().sort(getString(R.string.db_field_question))
+        val selectedDB = results[intPosition]
+
+        realm.beginTransaction()
+
+        selectedDB!!.strQuestion = editTextQuestion.text.toString()
+        selectedDB!!.strAnswer = editTextAnswer.text.toString()
+
+        realm.commitTransaction()
+
+        editTextQuestion.setText("")
+        editTextAnswer.setText("")
+
+        Toast.makeText(this@EditActivity, "修正が完了しました", Toast.LENGTH_SHORT).show()
     }
 
     private fun addNewWord() {
