@@ -65,7 +65,11 @@ class WordListActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
         val strSelectedAnswer = selectedDB!!.strAnswer
 
         val intent = Intent(this@WordListActivity, EditActivity::class.java)
-
+        intent.putExtra(getString(R.string.intent_key_question), strSelectedQuestion)
+        intent.putExtra(getString(R.string.intent_key_answer), strSelectedAnswer)
+        intent.putExtra(getString(R.string.intent_key_position), position)
+        intent.putExtra(getString(R.string.intent_key_status), getString(R.string.status_change))
+        startActivity(intent)
     }
 
     override fun onItemLongClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long): Boolean {
