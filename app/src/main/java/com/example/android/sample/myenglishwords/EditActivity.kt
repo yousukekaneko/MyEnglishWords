@@ -10,6 +10,10 @@ class EditActivity : AppCompatActivity() {
 
     lateinit var realm: Realm
 
+    var strQuestion : String = ""
+    var strAnswer : String = ""
+    var intPostion : Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
@@ -19,7 +23,12 @@ class EditActivity : AppCompatActivity() {
         textViewStatus.text = strStatus
 
         if (strStatus == getString(R.string.status_change)) {
+            strQuestion = bundle.getString(getString(R.string.intent_key_question))
+            strAnswer = bundle.getString(getString(R.string.intent_key_answer))
+            editTextQuestion.setText(strQuestion)
+            editTextAnswer.setText(strAnswer)
 
+            intPostion = bundle.getInt(getString(R.string.intent_key_position))
         }
 
         buttonRegister.setOnClickListener {
