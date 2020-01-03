@@ -11,9 +11,11 @@ import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_word_list.*
 
 class WordListActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
-    View.OnLongClickListener, AdapterView.OnItemLongClickListener {
+    AdapterView.OnItemLongClickListener {
 
     lateinit var realm: Realm
+
+    lateinit var results: RealmResults<EnglishWordDB>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +40,7 @@ class WordListActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
 
         realm = Realm.getDefaultInstance()
 
-        val results: RealmResults<EnglishWordDB> = realm.where(EnglishWordDB::class.java)
+        results = realm.where(EnglishWordDB::class.java)
             .findAll().sort(getString(R.string.db_field_question))
 
         val wordList = ArrayList<String>()
@@ -57,8 +59,13 @@ class WordListActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
         realm.close()
     }
 
-    override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        val selectedDB = results[position]
+        val strSelectedQuestion = selectedDB!!.strQuestion
+        val strSelectedAnswer = selectedDB!!.strAnswer
+
+        val intent = Intent(this@WordListActivity, EditActivity::class.java)
+
     }
 
     override fun onItemLongClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long): Boolean {
