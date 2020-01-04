@@ -72,8 +72,13 @@ class WordListActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
         startActivity(intent)
     }
 
-    override fun onItemLongClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onItemLongClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long): Boolean {
+
+        val selectedDB = results[position]
+
+        realm.beginTransaction()
+        selectedDB!!.deleteFromRealm()
+        realm.commitTransaction()
     }
 
 }
