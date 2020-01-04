@@ -17,6 +17,10 @@ class WordListActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
 
     lateinit var results: RealmResults<EnglishWordDB>
 
+    lateinit var wordList :ArrayList<String>
+
+    lateinit var adapter : ArrayAdapter<String>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_word_list)
@@ -43,12 +47,12 @@ class WordListActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
         results = realm.where(EnglishWordDB::class.java)
             .findAll().sort(getString(R.string.db_field_question))
 
-        val wordList = ArrayList<String>()
+        wordList = ArrayList()
         results.forEach {
             wordList.add(it.strQuestion + " : " + it.strAnswer)
         }
 
-        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, wordList)
+        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, wordList)
 
         listView.adapter = adapter
     }
@@ -79,6 +83,12 @@ class WordListActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
         realm.beginTransaction()
         selectedDB!!.deleteFromRealm()
         realm.commitTransaction()
+
+        wordList.removeAt(position)
+
+        listView.adapter = adapter
+
+        return true
     }
 
 }
