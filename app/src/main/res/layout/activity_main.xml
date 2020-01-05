@@ -55,12 +55,13 @@
             android:id="@+id/radioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:checked="true"
+            android:text="@string/radio_button_01" />
 
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="@string/radio_button_02" />
     </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>
