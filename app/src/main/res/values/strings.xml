@@ -7,7 +7,7 @@
 
     <string name="status_add">add new words</string>
     <string name="status_change">edit words</string>
-    
+
     <string name="intent_key_status">intent_key_status</string>
     <string name="intent_key_question">intent_key_question</string>
     <string name="intent_key_answer">intent_key_answer</string>
