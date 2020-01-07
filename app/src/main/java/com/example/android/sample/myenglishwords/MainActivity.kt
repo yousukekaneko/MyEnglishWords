@@ -18,6 +18,11 @@ class MainActivity : AppCompatActivity() {
 
         buttonCheckTest.setOnClickListener {
             val intent = Intent(this@MainActivity, TestActivity::class.java)
+            when (radioGroup.checkedRadioButtonId) {
+                R.id.radioButton -> intent.putExtra(getString(R.string.intent_key_memory_flag), true)
+
+                R.id.radioButton2 -> intent.putExtra(getString(R.string.intent_key_memory_flag), false)
+            }
             startActivity(intent)
         }
     }
