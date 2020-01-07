@@ -11,8 +11,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        buttonEdit.setOnClickListener{
+        buttonEditWords.setOnClickListener{
             val intent = Intent(this@MainActivity, WordListActivity::class.java)
+            startActivity(intent)
+        }
+
+        buttonCheckTest.setOnClickListener {
+            val intent = Intent(this@MainActivity, TestActivity::class.java)
             startActivity(intent)
         }
     }
