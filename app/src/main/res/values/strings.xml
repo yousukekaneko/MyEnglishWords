@@ -19,6 +19,7 @@
     <string name="button_sort">Memorized \nwords \nbelow</string>
     
     <string name="number_of_questions_left">Number of questions left</string>
+    <string name="check_box">Check \nwhen \nmemorized</string>
     
     <string name="radio_button_01">Exclude memorized English words.</string>
     <string name="radio_button_02">Including memorized English words.</string>
