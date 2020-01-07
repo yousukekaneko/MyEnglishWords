@@ -34,8 +34,22 @@ class WordListActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
             finish()
         }
 
-        listView.onItemClickListener = this
+        buttonSort.setOnClickListener {
+            results = realm.where<EnglishWordDB>(EnglishWordDB::class.java).findAll().sort(getString(R.string.db_field_flag))
 
+            wordList.clear()
+
+            results.forEach {
+                if (it.memoryFrag) {
+                    wordList.add(it.strQuestion + " : " + it.strAnswer + "暗記済み")
+                } else {
+                    wordList.add(it.strQuestion + " : " + it.strAnswer)
+                }
+            }
+            listView.adapter = adapter
+        }
+
+        listView.onItemClickListener = this
         listView.onItemLongClickListener = this
     }
 
