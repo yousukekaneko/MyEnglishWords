@@ -45,11 +45,15 @@ class WordListActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
         realm = Realm.getDefaultInstance()
 
         results = realm.where(EnglishWordDB::class.java)
-            .findAll().sort(getString(R.string.db_field_question))
+            .findAll().sort(getString(R.string.db_field_answer))
 
         wordList = ArrayList()
         results.forEach {
-            wordList.add(it.strQuestion + " : " + it.strAnswer)
+            if (it.memoryFrag) {
+                wordList.add(it.strQuestion + " : " + it.strAnswer + "暗記済み")
+            } else {
+                wordList.add(it.strQuestion + " : " + it.strAnswer)
+            }
         }
 
         adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, wordList)
