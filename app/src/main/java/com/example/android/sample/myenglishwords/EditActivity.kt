@@ -75,8 +75,7 @@ class EditActivity : AppCompatActivity() {
 
     private fun addNewWord() {
         realm.beginTransaction()
-            val englishWordDB = realm.createObject(EnglishWordDB::class.java)
-            englishWordDB.strQuestion = editTextQuestion.text.toString()
+            val englishWordDB = realm.createObject(EnglishWordDB::class.java, editTextQuestion.text.toString())
             englishWordDB.strAnswer = editTextAnswer.text.toString()
         realm.commitTransaction()
 
