@@ -62,8 +62,9 @@ class EditActivity : AppCompatActivity() {
 
         realm.beginTransaction()
 
-        selectedDB!!.strQuestion = editTextQuestion.text.toString()
+//        selectedDB!!.strQuestion = editTextQuestion.text.toString()
         selectedDB!!.strAnswer = editTextAnswer.text.toString()
+        selectedDB!!.memoryFrag = false
 
         realm.commitTransaction()
 
@@ -77,6 +78,7 @@ class EditActivity : AppCompatActivity() {
         realm.beginTransaction()
             val englishWordDB = realm.createObject(EnglishWordDB::class.java, editTextQuestion.text.toString())
             englishWordDB.strAnswer = editTextAnswer.text.toString()
+            englishWordDB.memoryFrag = false
         realm.commitTransaction()
 
         editTextQuestion.setText("")
