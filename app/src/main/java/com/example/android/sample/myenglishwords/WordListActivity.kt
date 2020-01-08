@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import io.realm.Realm
 import io.realm.RealmResults
@@ -98,13 +99,23 @@ class WordListActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
 
         val selectedDB = results[position]
 
-        realm.beginTransaction()
-        selectedDB!!.deleteFromRealm()
-        realm.commitTransaction()
+        val dialog = AlertDialog.Builder(this@WordListActivity).apply {
+            setTitle(selectedDB?.strAnswer + "の削除")
+            setMessage("削除してもよろしいですか？")
+            setPositiveButton("Yes") { dialog, which ->
+                realm.beginTransaction()
+                selectedDB!!.deleteFromRealm()
+                realm.commitTransaction()
 
-        wordList.removeAt(position)
+                wordList.removeAt(position)
 
-        listView.adapter = adapter
+                listView.adapter = adapter
+            }
+            setNegativeButton("No") {
+                    dialog, which ->
+            }
+            show()
+        }
 
         return true
     }
