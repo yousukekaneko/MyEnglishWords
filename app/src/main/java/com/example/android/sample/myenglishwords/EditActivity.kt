@@ -84,6 +84,8 @@ class EditActivity : AppCompatActivity() {
 
                 finish()
             }
+            setNegativeButton("No") {dialog, which ->  }
+            show()
         }
 
 
