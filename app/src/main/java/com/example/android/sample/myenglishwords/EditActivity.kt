@@ -65,18 +65,28 @@ class EditActivity : AppCompatActivity() {
             .findAll().sort(getString(R.string.db_field_question))
         val selectedDB = results[intPosition]
 
-        realm.beginTransaction()
+        val dialog = AlertDialog.Builder(this@EditActivity).apply {
+            setTitle("Change of" + selectedDB?.strAnswer)
+            setMessage("Can I change it?")
+            setPositiveButton("Yes") { dialog, which ->
+                realm.beginTransaction()
 
 //        selectedDB!!.strQuestion = editTextQuestion.text.toString()
-        selectedDB!!.strAnswer = editTextAnswer.text.toString()
-        selectedDB!!.memoryFrag = false
+                selectedDB!!.strAnswer = editTextAnswer.text.toString()
+                selectedDB!!.memoryFrag = false
 
-        realm.commitTransaction()
+                realm.commitTransaction()
 
-        editTextQuestion.setText("")
-        editTextAnswer.setText("")
+                editTextQuestion.setText("")
+                editTextAnswer.setText("")
 
-        Toast.makeText(this@EditActivity, "修正が完了しました", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@EditActivity, "Fix completed", Toast.LENGTH_SHORT).show()
+
+                finish()
+            }
+        }
+
+
     }
 
     private fun addNewWord() {
