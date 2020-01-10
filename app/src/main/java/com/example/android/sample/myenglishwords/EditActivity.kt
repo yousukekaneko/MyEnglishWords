@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import io.realm.Realm
+import io.realm.exceptions.RealmPrimaryKeyConstraintException
 import kotlinx.android.synthetic.main.activity_edit.*
 
 class EditActivity : AppCompatActivity() {
@@ -98,16 +99,22 @@ class EditActivity : AppCompatActivity() {
             setMessage("Are you sure you want to register?")
             setPositiveButton("Yes") { dialog, which ->
 
-                realm.beginTransaction()
-                val englishWordDB = realm.createObject(EnglishWordDB::class.java, editTextQuestion.text.toString())
-                englishWordDB.strAnswer = editTextAnswer.text.toString()
-                englishWordDB.memoryFrag = false
-                realm.commitTransaction()
+                try {
+                    realm.beginTransaction()
+                    val englishWordDB = realm.createObject(EnglishWordDB::class.java, editTextQuestion.text.toString())
+                    englishWordDB.strAnswer = editTextAnswer.text.toString()
+                    englishWordDB.memoryFrag = false
 
-                editTextQuestion.setText("")
-                editTextAnswer.setText("")
+                    Toast.makeText(this@EditActivity, "Completion of registration!", Toast.LENGTH_SHORT).show()
 
-                Toast.makeText(this@EditActivity, "Completion of registration!", Toast.LENGTH_SHORT).show()
+                } catch (e: RealmPrimaryKeyConstraintException) {
+                    Toast.makeText(this@EditActivity, "The word has already been registered.", Toast.LENGTH_SHORT).show()
+                } finally {
+                    editTextQuestion.setText("")
+                    editTextAnswer.setText("")
+                    realm.commitTransaction()
+                }
+
             }
             setNegativeButton("No") { dialog, which -> }
             show()
