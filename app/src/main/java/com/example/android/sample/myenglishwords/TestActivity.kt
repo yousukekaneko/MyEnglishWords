@@ -7,12 +7,16 @@ import kotlinx.android.synthetic.main.activity_test.*
 
 class TestActivity : AppCompatActivity(), View.OnClickListener {
 
+    var boolStatusMemory : Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
 
-        buttonGoToNext.setOnClickListener(this)
+        val bundle = intent.extras
+        boolStatusMemory = bundle.getBoolean(getString(R.string.intent_key_memory_flag))
 
+        buttonGoToNext.setOnClickListener(this)
         buttonQuitWordTest.setOnClickListener(this)
     }
 
