@@ -2,6 +2,7 @@ package com.example.android.sample.myenglishwords
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_edit.*
@@ -29,6 +30,10 @@ class EditActivity : AppCompatActivity() {
             editTextAnswer.setText(strAnswer)
 
             intPosition = bundle.getInt(getString(R.string.intent_key_position))
+
+            editTextQuestion.isEnabled = false
+        } else  {
+            editTextQuestion.isEnabled = true
         }
 
         buttonRegister.setOnClickListener {
@@ -75,6 +80,25 @@ class EditActivity : AppCompatActivity() {
     }
 
     private fun addNewWord() {
+
+        val dialog = AlertDialog.Builder(this@EditActivity).apply {
+            setTitle("Register")
+            setMessage("Are you sure you want to register?")
+            setPositiveButton("Yes") { dialog, which ->
+
+                realm.beginTransaction()
+                val englishWordDB = realm.createObject(EnglishWordDB::class.java, editTextQuestion.text.toString())
+                englishWordDB.strAnswer = editTextAnswer.text.toString()
+                englishWordDB.memoryFrag = false
+                realm.commitTransaction()
+
+                editTextQuestion.setText("")
+                editTextAnswer.setText("")
+
+                Toast.makeText(this@EditActivity, "Completion of registration!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         realm.beginTransaction()
             val englishWordDB = realm.createObject(EnglishWordDB::class.java, editTextQuestion.text.toString())
             englishWordDB.strAnswer = editTextAnswer.text.toString()
