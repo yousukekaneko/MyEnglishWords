@@ -97,6 +97,8 @@ class EditActivity : AppCompatActivity() {
 
                 Toast.makeText(this@EditActivity, "Completion of registration!", Toast.LENGTH_SHORT).show()
             }
+            setNegativeButton("No") { dialog, which -> }
+            show()
         }
 
         realm.beginTransaction()
