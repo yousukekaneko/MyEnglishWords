@@ -3,6 +3,7 @@ package com.example.android.sample.myenglishwords
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_test.*
 
 class TestActivity : AppCompatActivity(), View.OnClickListener {
@@ -14,6 +15,8 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
     val RUNNING_QUESTION : Int = 2
     val RUNNING_ANSWER : Int = 3
     val TEST_FINISHED : Int = 4
+
+    lateinit var realm : Realm
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +34,12 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
 
         buttonGoToNext.setOnClickListener(this)
         buttonQuitWordTest.setOnClickListener(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        realm = Realm.getDefaultInstance()
     }
 
     override fun onClick(p0: View?) {
