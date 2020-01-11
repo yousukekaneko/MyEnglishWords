@@ -42,6 +42,12 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
         realm = Realm.getDefaultInstance()
     }
 
+    override fun onPause() {
+        super.onPause()
+
+        realm.close()
+    }
+
     override fun onClick(p0: View?) {
 
         showQuestion()
