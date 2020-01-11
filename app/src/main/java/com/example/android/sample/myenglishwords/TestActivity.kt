@@ -9,12 +9,25 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
 
     var boolStatusMemory : Boolean = false
 
+    var intStatus : Int = 0
+    val BEFORE_START : Int = 1
+    val RUNNING_QUESTION : Int = 2
+    val RUNNING_ANSWER : Int = 3
+    val TEST_FINISHED : Int = 4
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
 
         val bundle = intent.extras
         boolStatusMemory = bundle.getBoolean(getString(R.string.intent_key_memory_flag))
+
+        intStatus = BEFORE_START
+        flashCardQuestion.visibility = View.INVISIBLE
+        flashCardAnswer.visibility = View.INVISIBLE
+
+        buttonGoToNext.setBackgroundResource(R.drawable.image_button_test_start)
+        buttonQuitWordTest.setBackgroundResource(R.drawable.image_button_end_test)
 
         buttonGoToNext.setOnClickListener(this)
         buttonQuitWordTest.setOnClickListener(this)
