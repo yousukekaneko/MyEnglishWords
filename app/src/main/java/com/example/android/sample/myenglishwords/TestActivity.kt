@@ -72,9 +72,20 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.buttonGoToNext ->
                 when(intStatus) {
-                    BEFORE_START -> showQuestion()
-                    RUNNING_QUESTION -> showAnswer()
-                    RUNNING_ANSWER -> showQuestion()
+                    BEFORE_START -> {
+                        intStatus = RUNNING_QUESTION
+                        showQuestion()
+                    }
+                    RUNNING_QUESTION -> {
+                        intStatus = RUNNING_ANSWER
+                        showAnswer()
+                    }
+
+                    RUNNING_ANSWER -> {
+                        intStatus = RUNNING_QUESTION
+                        showQuestion()
+                    }
+
                 }
 
             R.id.buttonQuitWordTest ->
