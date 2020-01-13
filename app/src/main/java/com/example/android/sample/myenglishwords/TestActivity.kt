@@ -7,6 +7,7 @@ import io.realm.Realm
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_test.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class TestActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -20,6 +21,7 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var realm : Realm
     lateinit var results : RealmResults<EnglishWordDB>
+    lateinit var word_list : ArrayList<EnglishWordDB>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +51,9 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
         } else {
             results = realm.where(EnglishWordDB::class.java).findAll()
         }
-        Collections.shuffle(results)
+
+        word_list = ArrayList(results)
+        Collections.shuffle(word_list)
     }
 
     override fun onPause() {
