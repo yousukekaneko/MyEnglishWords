@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import io.realm.Realm
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_test.*
+import java.util.*
 
 class TestActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -48,6 +49,7 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
         } else {
             results = realm.where(EnglishWordDB::class.java).findAll()
         }
+        Collections.shuffle(results)
     }
 
     override fun onPause() {
