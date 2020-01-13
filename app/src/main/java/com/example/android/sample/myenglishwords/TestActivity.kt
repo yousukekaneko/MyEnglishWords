@@ -23,6 +23,8 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var results : RealmResults<EnglishWordDB>
     lateinit var word_list : ArrayList<EnglishWordDB>
 
+    var intLength : Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
@@ -51,6 +53,9 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
         } else {
             results = realm.where(EnglishWordDB::class.java).findAll()
         }
+
+        intLength = results.size
+        textViewRemaining.text = intLength.toString()
 
         word_list = ArrayList(results)
         Collections.shuffle(word_list)
