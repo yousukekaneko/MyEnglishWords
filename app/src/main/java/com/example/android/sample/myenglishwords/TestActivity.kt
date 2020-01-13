@@ -104,5 +104,12 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
     private fun showQuestion() {
         intCounter ++
         textViewRemaining.text = (intLength - intCounter).toString()
+
+        flashCardAnswer.visibility = View.INVISIBLE
+        textFlashCardAnswer.text = ""
+        flashCardQuestion.visibility = View.VISIBLE
+        textFlashCardQuestion.text = word_list[intCounter -1].strQuestion
+
+        buttonGoToNext.setBackgroundResource(R.drawable.image_button_go_next_question)
     }
 }
