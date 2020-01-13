@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import io.realm.Realm
+import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_test.*
 
 class TestActivity : AppCompatActivity(), View.OnClickListener {
@@ -17,6 +18,7 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
     val TEST_FINISHED : Int = 4
 
     lateinit var realm : Realm
+    lateinit var results : RealmResults<EnglishWordDB>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +42,12 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
         super.onResume()
 
         realm = Realm.getDefaultInstance()
+
+        if (boolStatusMemory) {
+            results = realm.where(EnglishWordDB::class.java).equalTo(getString(R.string.db_field_flag), false).findAll()
+        } else {
+            results = realm.where(EnglishWordDB::class.java).findAll()
+        }
     }
 
     override fun onPause() {
