@@ -24,6 +24,7 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var word_list : ArrayList<EnglishWordDB>
 
     var intLength : Int = 0
+    var intCounter : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,6 +102,14 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun showQuestion() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        intCounter ++
+        textViewRemaining.text = (intLength - intCounter).toString()
+
+        flashCardAnswer.visibility = View.INVISIBLE
+        textFlashCardAnswer.text = ""
+        flashCardQuestion.visibility = View.VISIBLE
+        textFlashCardQuestion.text = word_list[intCounter -1].strQuestion
+
+        buttonGoToNext.setBackgroundResource(R.drawable.image_button_go_next_question)
     }
 }
