@@ -67,11 +67,22 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
         realm.close()
     }
 
-    override fun onClick(p0: View?) {
+    override fun onClick(v: View?) {
 
-        showQuestion()
+        when (v?.id) {
+            R.id.buttonGoToNext ->
+                when(intStatus) {
+                    BEFORE_START -> showQuestion()
+                    RUNNING_QUESTION -> showAnswer()
+                    RUNNING_ANSWER -> showQuestion()
+                }
 
-        showAnswer()
+            R.id.buttonQuitWordTest ->
+        }
+
+
+
+
     }
 
     private fun showAnswer() {
