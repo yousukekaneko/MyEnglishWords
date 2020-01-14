@@ -12,6 +12,7 @@ import kotlin.collections.ArrayList
 class TestActivity : AppCompatActivity(), View.OnClickListener {
 
     var boolStatusMemory : Boolean = false
+    var boolmemorize : Boolean = false
 
     var intStatus : Int = 0
     val BEFORE_START : Int = 1
@@ -42,6 +43,11 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
 
         buttonGoToNext.setOnClickListener(this)
         buttonQuitWordTest.setOnClickListener(this)
+
+        checkBox.setOnClickListener {
+            if (checkBox.isChecked) boolmemorize = true else boolmemorize = false
+
+        }
     }
 
     override fun onResume() {
@@ -89,7 +95,7 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
 
                 }
 
-            R.id.buttonQuitWordTest ->
+//            R.id.buttonQuitWordTest ->
         }
 
 
