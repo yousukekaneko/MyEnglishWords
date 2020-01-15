@@ -45,8 +45,7 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
         buttonQuitWordTest.setOnClickListener(this)
 
         checkBox.setOnClickListener {
-            if (checkBox.isChecked) boolmemorize = true else boolmemorize = false
-
+            boolmemorize = checkBox.isChecked
         }
     }
 
