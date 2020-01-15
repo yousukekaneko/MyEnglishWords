@@ -116,5 +116,8 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
         textFlashCardQuestion.text = word_list[intCounter -1].strQuestion
 
         buttonGoToNext.setBackgroundResource(R.drawable.image_button_go_next_question)
+
+        checkBox.isChecked = word_list[intCounter -1].memoryFrag
+        boolmemorize = checkBox.isChecked
     }
 }
