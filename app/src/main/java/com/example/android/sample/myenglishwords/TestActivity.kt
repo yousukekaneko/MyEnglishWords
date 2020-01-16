@@ -108,6 +108,11 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
 
 
     private fun showQuestion() {
+
+        if (intCounter > 0) {
+
+        }
+
         intCounter ++
         textViewRemaining.text = (intLength - intCounter).toString()
 
