@@ -110,7 +110,11 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
     private fun showQuestion() {
 
         if (intCounter > 0) {
-
+            val selectedDB = realm.where(EnglishWordDB::class.java).equalTo(getString(R.string.db_field_question),
+                word_list[intCounter - 1].strQuestion).findFirst()!!
+            realm.beginTransaction()
+            selectedDB.memoryFrag = boolmemorize
+            realm.commitTransaction()
         }
 
         intCounter ++
