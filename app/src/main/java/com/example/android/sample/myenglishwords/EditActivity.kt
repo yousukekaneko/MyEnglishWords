@@ -73,7 +73,7 @@ class EditActivity : AppCompatActivity() {
                 realm.beginTransaction()
 
                 selectedDB!!.strAnswer = editTextAnswer.text.toString()
-                selectedDB!!.memoryFrag = false
+                selectedDB!!.memoryFlag = false
 
                 realm.commitTransaction()
 
@@ -102,7 +102,7 @@ class EditActivity : AppCompatActivity() {
                     realm.beginTransaction()
                     val englishWordDB = realm.createObject(EnglishWordDB::class.java, editTextQuestion.text.toString())
                     englishWordDB.strAnswer = editTextAnswer.text.toString()
-                    englishWordDB.memoryFrag = false
+                    englishWordDB.memoryFlag = false
 
                     Toast.makeText(this@EditActivity, "Completion of registration!", Toast.LENGTH_SHORT).show()
 
@@ -122,7 +122,7 @@ class EditActivity : AppCompatActivity() {
         realm.beginTransaction()
             val englishWordDB = realm.createObject(EnglishWordDB::class.java, editTextQuestion.text.toString())
             englishWordDB.strAnswer = editTextAnswer.text.toString()
-            englishWordDB.memoryFrag = false
+            englishWordDB.memoryFlag = false
         realm.commitTransaction()
 
         editTextQuestion.setText("")

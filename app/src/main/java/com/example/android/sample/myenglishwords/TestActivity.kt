@@ -105,7 +105,7 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
                             val selectedDB = realm.where(EnglishWordDB::class.java).equalTo(getString(R.string.db_field_question),
                                 word_list[intCounter - 1].strQuestion).findFirst()!!
                             realm.beginTransaction()
-                            selectedDB.memoryFrag = boolmemorize
+                            selectedDB.memoryFlag = boolmemorize
                             realm.commitTransaction()
                         }
                         finish()
@@ -150,7 +150,7 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
             val selectedDB = realm.where(EnglishWordDB::class.java).equalTo(getString(R.string.db_field_question),
                 word_list[intCounter - 1].strQuestion).findFirst()!!
             realm.beginTransaction()
-            selectedDB.memoryFrag = boolmemorize
+            selectedDB.memoryFlag = boolmemorize
             realm.commitTransaction()
         }
 
@@ -164,7 +164,7 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
 
         buttonGoToNext.setBackgroundResource(R.drawable.image_button_go_next_question)
 
-        checkBox.isChecked = word_list[intCounter -1].memoryFrag
+        checkBox.isChecked = word_list[intCounter -1].memoryFlag
         boolmemorize = checkBox.isChecked
     }
 }
