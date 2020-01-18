@@ -103,7 +103,23 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun showAnswer() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+        flashCardAnswer.visibility = View.VISIBLE
+        textFlashCardAnswer.text = word_list[intCounter - 1].strAnswer
+
+        buttonGoToNext.setBackgroundResource(R.drawable.image_button_go_next_question)
+
+        if (intLength == intCounter) {
+            intStatus = TEST_FINISHED
+
+            textFinishMessage.text = "finish"
+        }
+
+        buttonGoToNext.isEnabled = false
+        buttonGoToNext.visibility = View.INVISIBLE
+
+        buttonQuitWordTest.setBackgroundResource(R.drawable.image_button_back)
+
     }
 
 
