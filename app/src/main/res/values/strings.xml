@@ -25,4 +25,6 @@
     
     <string name="radio_button_01">Exclude memorized English words.</string>
     <string name="radio_button_02">Including memorized English words.</string>
+
+    <string name="end_message">Can I end the test?</string>
 </resources>
