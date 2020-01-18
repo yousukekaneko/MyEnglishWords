@@ -67,12 +67,11 @@ class EditActivity : AppCompatActivity() {
         val selectedDB = results[intPosition]
 
         val dialog = AlertDialog.Builder(this@EditActivity).apply {
-            setTitle("Change of" + selectedDB?.strAnswer)
+            setTitle("Change of " + selectedDB?.strAnswer)
             setMessage("Can I change it?")
             setPositiveButton("Yes") { dialog, which ->
                 realm.beginTransaction()
 
-//        selectedDB!!.strQuestion = editTextQuestion.text.toString()
                 selectedDB!!.strAnswer = editTextAnswer.text.toString()
                 selectedDB!!.memoryFrag = false
 
