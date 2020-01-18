@@ -1,5 +1,6 @@
 package com.example.android.sample.myenglishwords
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -94,7 +95,27 @@ class TestActivity : AppCompatActivity(), View.OnClickListener {
 
                 }
 
-//            R.id.buttonQuitWordTest ->
+            R.id.buttonQuitWordTest -> {
+
+                val dialig = AlertDialog.Builder(this@TestActivity).apply {
+                    setTitle("finish")
+                    setMessage(getString(R.string.end_message))
+                    setPositiveButton("Yes") { _ , _ ->
+                        if (intLength == intCounter) {
+                            val selectedDB = realm.where(EnglishWordDB::class.java).equalTo(getString(R.string.db_field_question),
+                                word_list[intCounter - 1].strQuestion).findFirst()!!
+                            realm.beginTransaction()
+                            selectedDB.memoryFrag = boolmemorize
+                            realm.commitTransaction()
+                        }
+                        finish()
+                    }
+                    setNegativeButton("No") { _ , _ ->
+
+                    }
+                    show()
+                }
+            }
         }
 
 
