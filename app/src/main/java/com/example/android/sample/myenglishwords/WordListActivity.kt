@@ -41,7 +41,7 @@ class WordListActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
             wordList.clear()
 
             results.forEach {
-                if (it.memoryFrag) {
+                if (it.memoryFlag) {
                     wordList.add(it.strQuestion + " : " + it.strAnswer + "暗記済み")
                 } else {
                     wordList.add(it.strQuestion + " : " + it.strAnswer)
@@ -64,7 +64,7 @@ class WordListActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
 
         wordList = ArrayList()
         results.forEach {
-            if (it.memoryFrag) {
+            if (it.memoryFlag) {
                 wordList.add(it.strQuestion + " : " + it.strAnswer + "暗記済み")
             } else {
                 wordList.add(it.strQuestion + " : " + it.strAnswer)

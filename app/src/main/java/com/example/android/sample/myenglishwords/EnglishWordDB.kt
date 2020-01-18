@@ -7,7 +7,7 @@ import io.realm.annotations.PrimaryKey
 open class EnglishWordDB : RealmObject() {
     //フィールドの設定
     @PrimaryKey
-    open var strQuestion : String = ""
-    open var strAnswer : String = ""
-    open var memoryFrag : Boolean = false
+    var strQuestion : String = ""
+    var strAnswer : String = ""
+    var memoryFlag : Boolean = false
 }
